@@ -1,16 +1,14 @@
 ﻿@model Test.Models.Employee
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = Model==null? "Create" : "Edit";
 }
 
-<h1>Create</h1>
-
-<h4>Employee</h4>
+<h1> @ViewData["Title"] Employee</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="@ViewData["Title"]" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EmployeeName" class="control-label"></label>
@@ -19,7 +17,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
+                <input type="file" asp-for="Image" class="form-control" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,10 +42,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="DepartmentId" class="control-label"></label>
-                <select asp-for="DepartmentId" class ="form-control" asp-items="ViewBag.DepartmentId"></select>
+                <select asp-for="DepartmentId" class ="form-control" asp-items="@(new SelectList(ViewBag.Department,"DepartmentId","DepartmentName"))">
+                    <option value="">Select Department Name</option>
+                </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="@ViewData["Title"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
