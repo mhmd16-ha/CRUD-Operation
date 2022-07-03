@@ -33,7 +33,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Department)
             </th>
-            <th></th>
+            <th>Events</th>
         </tr>
     </thead>
     <tbody>
@@ -62,7 +62,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.EmployeeId"  onclick="return confirm('Are you sure to delete ...?')">Delete</a>
             </td>
         </tr>
 }
